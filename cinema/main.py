@@ -1,15 +1,15 @@
-movie_titles = ["Marvel", "Spider-Man", "Oppenheimer", "Barby"]
+movie_titles = ["Marvel", "SpiderMan", "Oppenheimer", "Barby"]
 viewers_names = [[] for i in movie_titles]
 seat_numbers = [[] for i in movie_titles]
 
 
 def reserv_seat(name, movie, seat):
     for index, value in enumerate(movie_titles):
-        if movie == value:
+        if value == movie.upper():
             viewers_names[index].append(name)
             seat_numbers[index].append(seat)
-            print(f"\nМесто {seat} на фильм {movie} зарезервировано для {name}\n")
             return print_ticket(movie, name, seat)
+
 
 
 def delete_reservation(param):
@@ -20,16 +20,16 @@ def delete_reservation(param):
             value.remove(param)
             seat_numbers[index].pop(seat_index)
             return f"Бронь места {seat} для {param} удалена успешно!"
-    else:
-        for index, value in enumerate(seat_numbers):
-            if int(param) in value:
-                viewer_index = value.index(int(param))
-                viewer = viewers_names[index][viewer_index]
-                value.remove(int(param))
-                viewers_names[index].pop(viewer_index)
-                return f"Бронь места {param} для {viewer} удалена успешно!"
-            else:
-                continue
+        else:
+            for index, value in enumerate(seat_numbers):
+                if int(param) in value:
+                    viewer_index = value.index(int(param))
+                    viewer = viewers_names[index][viewer_index]
+                    value.remove(int(param))
+                    viewers_names[index].pop(viewer_index)
+                    return f"Бронь места {param} для {viewer} удалена успешно!"
+                else:
+                    continue
 
 
 def print_ticket(movie, name, seat):
@@ -51,8 +51,8 @@ def main():
     if option == 1:
         print(
             reserv_seat(
-                input("Имя зрителя: ").capitalize(),
-                input("Название фильма: ").capitalize(),
+                input("Имя зрителя: ").upper(),
+                input("Название фильма: ").upper(),
                 int(input("Место: ")),
             )
         )
