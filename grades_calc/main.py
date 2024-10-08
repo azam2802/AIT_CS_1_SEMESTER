@@ -45,6 +45,7 @@ def addGrade(name, grade, quiz, group):
 
 
 addGrade("emil", 100, "midterm2", "cs2023")
+addGrade("azam", 55, "midterm", "cs2024")
 addGrade("azam", 70, "midterm3", "cs2023")
 addGrade("atai", 67, "midterm2", "cs2023")
 addGrade("atai", 67, "quiz", "cs2023")
