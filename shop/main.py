@@ -1,8 +1,6 @@
 from services import clientService, wholesale, getProductsLeft, getLessProducts
 from utils import kariz
 from settings import karizdar
-
-
 # Главная функция
 
 def main():
