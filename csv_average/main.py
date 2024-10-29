@@ -8,7 +8,7 @@ with open("exam2.csv", "r") as fid:
         try:
             int(i[14])
             i[13], i[14] = i[14], ""
-        except:
+        except ValueError:
             pass      
     exams = {
         i[1]: {
@@ -29,7 +29,7 @@ with open("exam2.csv", "r") as fid:
         exams[i]["grades"] = exams[i]["grades"][:6]
         try:
             exams[i]["midterm"] = int(exams[i]["midterm"])
-        except:
+        except ValueError:
             exams[i]["midterm"] = 0
     exams.pop("")
 
