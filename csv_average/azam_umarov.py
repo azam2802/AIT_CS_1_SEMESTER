@@ -1,9 +1,9 @@
-from csv import reader, writer
+from csv import reader
 
 my_name = "Azam Umarov"
 
-def get_average_score(filename):
-    with open(filename) as fid:
+def formExams(file):
+    with open(file, "r") as fid:
         freader = reader(fid)
         listReader = [i for i in list(freader)]
         nameIndex = 0
@@ -39,22 +39,12 @@ def get_average_score(filename):
                 exams[i]["midterm"] = int(exams[i]["midterm"])
             except ValueError:
                 exams[i]["midterm"] = 0
-    info = []
-    for i,v in exams.items():
-        avg = round(((sum(v["grades"])/7)*0.7)+(v["midterm"]*0.075))
-        info.append((i, avg))
-    return info
+    return exams
 
-scores = get_average_score("exam_final.csv")
-d = {name:score for name, score in scores}
-out = []
-with open('result.csv') as fid:
-    r = reader(fid)
-    out.append(list(next(r)) + [my_name])
-    for i in r:
-        res = i + [d.get(i[0],'')]
-        out.append(res)
-with open('result.csv', 'w', newline='') as fid:
-    w = writer(fid)
-    w.writerows(out)
+def getAvg():
+    for i,v in formExams("exam_final.csv").items():
+        avg = round((sum(v["grades"])/7)*0.7)+(v["midterm"]*0.075)
+        yield i, avg
 
+for i in getAvg():
+    print(i)

@@ -1,11 +1,5 @@
-from sys import setrecursionlimit, set_int_max_str_digits
+arr = [["Emil", 20,30], ["azam", 2]]
 
-def factorial(n):
-    if n == 1:
-        return 1
-    else:
-        return n * factorial(n-1)
-    
-setrecursionlimit(1000000024) 
-set_int_max_str_digits(99999)
-print(factorial(1000000))
+arr = sorted(arr, key=lambda x: sum(x[1:]), reverse = True)
+
+print(arr)
